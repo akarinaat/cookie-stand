@@ -1,17 +1,36 @@
 body{
-  background: url('imgs/bluecookies.jpg');
+  background: url(imgs/bluecookies.jpg);
+}
+
+.sal {
+  margin: 10%;
+  margin-left: 25%;
+  margin-top:30px;
+  width: 50%;
+}
+
+.sal:hover{
+  transition: 500ms;
+  transform: rotate(180deg);
 }
 
 img {
-  margin: 10%;
-  margin-left: 15%;
-  margin-top:30px;
+
+	width: 30%;
+	float: left;
+  margin: 1.66%;
 }
-p{
-  font-size: 30px;
-  margin-left: 20%;
-  margin-bottom: 10px;
+img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50); 
+
 }
+
+.grid {
+padding-top: 20%;
+
+}
+
 
 img:hover{
   transform: rotate(360deg);
