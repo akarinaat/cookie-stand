@@ -11,7 +11,7 @@ var firstandPike = {
   cookiesPerHour:[],
   customerPerHour: [],
 
-  randomNumberOfClient: function ()//calculates
+  randomNumberOfClient: function ()//calculates the random clients
   {
     for (var i = 0; i < storeHours.length; i++){
 
@@ -25,12 +25,25 @@ var firstandPike = {
       this.cookiesPerHour[i] = numberSold;
       this.dailySales += numberSold;
     }
+  },
+  renderSales: function (){
+    var ulElem = document.getElementById('sales');
+    for (var i = 0; i < storeHours.length; i++){
+      //create an element
+      var listItemElem = document.createElement( 'li' );
+      //Give it a content
+      listItemElem.textContent = storeHours[i] + ': ' + Math.round(this.cookiesPerHour[i]);
+      //Append to the DOM
+      ulElem.appendChild(listItemElem);
+
+    }
   }
 
 };
 
-
-firstandPike();
+firstandPike.randomNumberOfClient();
+firstandPike.cookieSalesPerHour();
+firstandPike.renderSales();
 console.log(firstandPike.dailySales);
 
 
