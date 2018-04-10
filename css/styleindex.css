@@ -20,6 +20,7 @@ img {
 	float: left;
   margin: 1.66%;
 }
+
 img:hover {
   opacity: 0.5;
   filter: alpha(opacity=50); 
@@ -29,11 +30,6 @@ img:hover {
 .grid {
 padding-top: 20%;
 
-}
-
-
-img:hover{
-  transform: rotate(360deg);
 }
 
 #salmookies {
