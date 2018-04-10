@@ -1,5 +1,5 @@
 body{
-  background-color: url('bluecookies.jpg');
+  background: url('imgs/bluecookies.jpg');
 }
 
 img {
@@ -23,4 +23,5 @@ img:hover{
   text-align: center;
   background-color: bisque;
   margin-top: 5%;
+  font-family: 'Righteous', cursive;
 }
