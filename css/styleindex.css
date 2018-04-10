@@ -1,0 +1,28 @@
+body{
+  background: url('imgs/bluecookies.jpg');
+}
+
+img {
+  margin: 10%;
+  margin-left: 15%;
+  margin-top:30px;
+}
+p{
+  font-size: 30px;
+  margin-left: 20%;
+  margin-bottom: 10px;
+}
+
+img:hover{
+  transform: rotate(360deg);
+}
+
+#salmookies {
+  font-size: 100px;
+  color: salmon;
+  text-align: center;
+  background-color: bisque;
+  margin-top: 5%;
+  font-family: 'Permanent Marker', cursive;
+
+}
