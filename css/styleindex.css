@@ -1,17 +1,20 @@
-body{
-  background: url(imgs/bluecookies.jpg);
+body {
+  background: white;
+
 }
 
 .sal {
   margin: 10%;
   margin-left: 25%;
-  margin-top:30px;
+  margin-top: 30px;
   width: 50%;
+
 }
 
-.sal:hover{
+.sal:hover {
   transition: 500ms;
   transform: rotate(180deg);
+
 }
 
 img {
@@ -19,6 +22,7 @@ img {
 	width: 30%;
 	float: left;
   margin: 1.66%;
+  
 }
 
 img:hover {

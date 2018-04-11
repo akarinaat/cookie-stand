@@ -2,15 +2,15 @@
 
 var storeHours = [6 + 'am', 7 + 'am', 8 + 'am', 9 + 'am', 10 + 'am', 11 + 'am', 12 + 'pm', 1 + 'pm', 2 + 'pm', 3 + 'pm', 4 + 'pm', 5 + 'pm', 6 + 'pm', 7 + 'pm', 8 + 'pm'];
 
-var shopArr = [];
-// var firstandPike = {
-//   minClientPerHour: 23,
-//   maxClientPerHour: 65,
-//   averageCookiesPerCustomer: 6.3,
-//   dailySales:0,
-//   cookiesPerHour:[],
-//   customerPerHour: []
-// };
+//var shopArr = [];
+var firstandPike = {
+  minClientPerHour: 23,
+  maxClientPerHour: 65,
+  averageCookiesPerCustomer: 6.3,
+  dailySales:0,
+  cookiesPerHour:[],
+  customerPerHour: []
+};
 
 
 function CookieStore (storeLocation, minClientPerHour, maxClientPerHour,averageCookiesPerCustomer){
@@ -18,15 +18,16 @@ function CookieStore (storeLocation, minClientPerHour, maxClientPerHour,averageC
   this.minClient = minClientPerHour;
   this.maxClient = maxClientPerHour;
   this.averageCookies = averageCookiesPerCustomer;
-  // this.TotalcookieSales = ;
-  // this.cookiesPerHour = ;
+  this.totalCookieSales = [];
+  this.cookiesPerHour = ;
   this.store = storeLocation;
-  this.cookieSales = 0;
+  this.cookieSales = [];
   shopArr.push(this);
 }
 CookieStore.prototype.randomNumberOfClient = function(){
   for (var i = 0; i < storeHours.length; i++){
-    this.customerPerHour[i] = Math.floor(Math.random() * (this.maxClientPerHour - this.minClientPerHour)) + this.minClientPerHour;       
+    this.customerPerHour[i] = Math.floor(Math.random() * (this.maxClientPerHour - this.minClientPerHour)) + this.minClientPerHour;
+
   }
 
   CookieStore.prototype.cookieSales = function () {
@@ -34,17 +35,16 @@ CookieStore.prototype.randomNumberOfClient = function(){
       var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
       this.cookiesPerHour[i] = numberSold;
       this.dailySales += numberSold;
+      totalCookiesSales.push(numberSold);
 
 
       CookieStore.prototype.sales = function () {
         return 'Hi Pat, today\'s sales at' + this.store + ' were: ' + this.cookieSales + '.';
       };
 
+    }
 
-    };
-
-
-  }
+  };
 };
 
 var firstandPike = new CookieStore ('First and Pike', 23, 65,6.3);
@@ -58,9 +58,8 @@ console.log(alki);
 var capitolHill = new CookieStore ('Capitol Hill', 20,38,2.3);
 console.log(capitolHill);
 
-
 //console.log(firstandPike.sales());
-firstandPike.sales();
+CookieStore.firstandPike();
 seaTacAirport.sales();
 seattleCenter.sales();
 alki.sales();
