@@ -1,55 +1,61 @@
 'use strict';
 
-var storeHours = [6 + 'am', 7 + 'am', 8 + 'am', 9 + 'am', 10 + 'am', 11 + 'am', 12 + 'pm', 1 + 'pm', 2 + 'pm', 3 + 'pm', 4 + 'pm', 5 + 'pm', 6 + 'pm', 7 + 'pm', 8 + 'pm'];
+var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
-//var shopArr = [];
-var firstandPike = {
-  minClientPerHour: 23,
-  maxClientPerHour: 65,
-  averageCookiesPerCustomer: 6.3,
-  dailySales:0,
-  cookiesPerHour:[],
-  customerPerHour: []
-};
+// var firstandPike = {
+//   minClientPerHour: 23,
+//   maxClientPerHour: 65,
+//   averageCookiesPerCustomer: 6.3,
+//   dailySales:[],
+//   cookiesPerHour:[],
+//   customerPerHour: []
+// };
 
+//var customerPerHour = [];
 
-function CookieStore (storeLocation, minClientPerHour, maxClientPerHour,averageCookiesPerCustomer){
+function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 
-  this.minClient = minClientPerHour;
-  this.maxClient = maxClientPerHour;
-  this.averageCookies = averageCookiesPerCustomer;
-  this.totalCookieSales = [];
-  this.cookiesPerHour = [] ;
   this.store = storeLocation;
-  this.cookieSales = [];
+  this.minClient = minClient;
+  this.maxClient = maxClient;
+  this.averageCookies = averageCookies;
+  this.cookiesSoldPerHour = [];
+  this.dailySales = 0;
 
 }
+//generation my random Number Of clients
 CookieStore.prototype.randomNumberOfClient = function(){
-  for (var i = 0; i < storeHours.length; i++){
-    this.customerPerHour[i] = Math.floor(Math.random() * (this.maxClientPerHour - this.minClientPerHour)) + this.minClientPerHour;
+  return Math.floor(Math.random() * (this.maxClient - this.minClient)) + this.minClient;
+};
+
+// Cookies Sales per Hour
+CookieStore.prototype.cookieSales = function () {
+
+  for(var i = 0; i < storeHours.length; i++ ){
+    var salesPerHour = Math.round(this.randomNumberOfClient() * this.averageCookies);
+
+    this.cookiesSoldPerHour.push(salesPerHour);
+  }
+
+};
+
+//Total sales
+CookieStore.prototype.storeSales = function (){
+  for (var i = 0; i < this.cookiesSoldPerHour.length; i++) {
+    this.dailySales += this.cookiesSoldPerHour[i];
 
   }
 
-  CookieStore.prototype.cookieSales = function () {
-    for(var i = 0; i <storeHours.length; i++ ){
-      var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
-      this.cookiesPerHour[i] = numberSold;
-      this.dailySales += numberSold;
-      cookiesPerHour.push(this.numberSold);
-      totalCookieSales.push(dailySales);
-
-
-
-      CookieStore.prototype.sales = function () {
-        return 'Hi Pat, today\'s sales at' + this.store + ' were: ' + this.cookieSales + '.';
-      };
-
-    }
-
-  };
 };
 
-var firstandPike = new CookieStore ('First and Pike', 23, 65,6.3);
+function createTable () {
+  var rowElement = document.getElementById('thetable');
+
+};
+//Instances are OBJECT created by constructor functions.
+
+//These are the INSTANCES
+var firstandPike = new CookieStore ('First and Pike', 23, 65, 6.3);
 console.log(firstandPike);
 var seaTacAirport = new CookieStore ('SeaTac Airport', 3, 24, 1.2);
 console.log(seaTacAirport);
@@ -60,13 +66,17 @@ console.log(alki);
 var capitolHill = new CookieStore ('Capitol Hill', 20,38,2.3);
 console.log(capitolHill);
 
-//console.log(firstandPike.sales());
-CookieStore.firstandPike();
-seaTacAirport.sales();
-seattleCenter.sales();
-alki.sales();
-capitolHill.sales();
+firstandPike.cookieSales();
+seaTacAirport.cookieSales();
+seattleCenter.cookieSales();
+alki.cookieSales();
+capitolHill.cookieSales();
 
+firstandPike.storeSales();
+seaTacAirport.storeSales();
+seattleCenter.storeSales();
+alki.storeSales();
+capitolHill.storeSales();
 
 
 
@@ -88,7 +98,7 @@ capitolHill.sales();
 //   this.cookiesPerHour[i] = numberSold;
 //   this.dailySales += numberSold;
 
-  
+
 
 
 // cookieSalesPerHour: function ()
@@ -97,7 +107,7 @@ capitolHill.sales();
 //     var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
 //     this.cookiesPerHour[i] = numberSold;
 //     this.dailySales += numberSold;
-    
+
 // },
 
 
