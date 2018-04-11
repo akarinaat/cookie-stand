@@ -19,10 +19,10 @@ function CookieStore (storeLocation, minClientPerHour, maxClientPerHour,averageC
   this.maxClient = maxClientPerHour;
   this.averageCookies = averageCookiesPerCustomer;
   this.totalCookieSales = [];
-  this.cookiesPerHour = ;
+  this.cookiesPerHour = [] ;
   this.store = storeLocation;
   this.cookieSales = [];
-  shopArr.push(this);
+
 }
 CookieStore.prototype.randomNumberOfClient = function(){
   for (var i = 0; i < storeHours.length; i++){
@@ -35,7 +35,9 @@ CookieStore.prototype.randomNumberOfClient = function(){
       var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
       this.cookiesPerHour[i] = numberSold;
       this.dailySales += numberSold;
-      totalCookiesSales.push(numberSold);
+      cookiesPerHour.push(this.numberSold);
+      totalCookieSales.push(dailySales);
+
 
 
       CookieStore.prototype.sales = function () {
