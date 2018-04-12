@@ -1,5 +1,6 @@
 'use strict';
-
+//This tableElem variable will be called in my render part.
+var tableElem = document.getElementById('thetable');
 var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
 // var firstandPike = {
@@ -48,10 +49,72 @@ CookieStore.prototype.storeSales = function (){
 
 };
 
-function createTable () {
-  var rowElement = document.getElementById('thetable');
+//FIRST ROW : HEADER
+function renderTable() {
+  var headRowElement = document.createElement('tr');
+  //I will create a blank cell. Esto porque en el top izquierdo, no hay data.
+  var cellElement = document.createElement('th');
+  //I didn't give it a content because its a blank cell.
+  headRowElement.appendChild(cellElement);
+  //This will hours in my header, and have to make a for loop to print each of the storeHours in the 'tr' created before.
+  for(var i = 0; i < storeHours.length; i++){
+    console.log('hi');
+    //for( var i in storeHours); Esto es lo mismo que la foor lop que escribí arriba: var index en storeHour)
+    //1.I have to create the variable that creates my element 'th' (in this case)
+    var cellEl = document.createElement('th');
+    //2.Now I will give it content:
+    cellEl.textContent = storeHours[i];
+    //3.Now I have to Append.
+    headRowElement.appendChild(cellEl);
+
+  }
+  //I just appended the data
+  tableElem.appendChild(headRowElement);
+
+}
+//FIRST AND PIKE CELL
+CookieStore.prototype.salesRender = function() {
+
+  console.log('test');
+  var newRow = document.createElement('tr');
+  var dataRow = document.createElement('td');
+  dataRow.textContent = this.store;
+
+  newRow.appendChild(dataRow);
+  //tableElem.appendChild(newRow);
+console.log(dataRow);
+
+  for(var i = 0; i < storeHours.length; i++) {
+
+    var dataCell = document.createElement('td');
+
+    dataCell.textContent = this.cookiesSoldPerHour[i];
+console.log(this.cookiesSoldPerHour);
+    //Append
+
+    newRow.appendChild(dataCell);
+    
+  }
+  tableElem.appendChild(newRow);
 
 };
+
+renderTable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Instances are OBJECT created by constructor functions.
 
 //These are the INSTANCES
@@ -66,6 +129,8 @@ console.log(alki);
 var capitolHill = new CookieStore ('Capitol Hill', 20,38,2.3);
 console.log(capitolHill);
 
+
+
 firstandPike.cookieSales();
 seaTacAirport.cookieSales();
 seattleCenter.cookieSales();
@@ -77,7 +142,12 @@ seaTacAirport.storeSales();
 seattleCenter.storeSales();
 alki.storeSales();
 capitolHill.storeSales();
-
+//Calling the ROWS
+firstandPike.salesRender();
+seaTacAirport.salesRender();
+seattleCenter.salesRender();
+alki.salesRender();
+capitolHill.salesRender();
 
 
 
@@ -109,17 +179,6 @@ capitolHill.storeSales();
 //     this.dailySales += numberSold;
 
 // },
-
-
-
-
-
-
-
-
-
-
-
 
 
 //PIKE LOCATION
