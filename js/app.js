@@ -111,26 +111,32 @@ seattleCenter.salesRender();
 alki.salesRender();
 capitolHill.salesRender();
 //I'm CALLING THE TOTAL
-firstandPike.totalSales();
-seaTacAirport.totalSales();
-seattleCenter.totalSales();
-alki.totalSales();
-capitolHill.totalSales();
+// firstandPike.totalSales();
+// seaTacAirport.totalSales();
+// seattleCenter.totalSales();
+// alki.totalSales();
+// capitolHill.totalSales();
 
 
 //EVENTS
+
 
 function firstTry(event){
   event.preventDefault();
   console.log('the form was submitted');
 
   var firstElement = event.target;
-  var newInput = new CookieStore(firstElement.storeLocation.value, firstElement.minClient.value, firstElement.maxClient, firstElement.averageCookies.value);
+  var newInput = new CookieStore(firstElement.location.value, parseInt(firstElement.min.value), parseInt(firstElement.max.value), parseInt(firstElement.average.value));
   console.log(newInput);
-  newInput.renderstoreSales();
+  newInput.cookieSales();
+  newInput.storeSales();
+  newInput.salesRender();
+
 
 }
 
+var locationFormElement = document.getElementById('formElement');
+locationFormElement.addEventListener('submit', firstTry);
 
 
 
