@@ -3,6 +3,8 @@
 var tableElem = document.getElementById('thetable');
 var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
+//var tableContent =[];
+
 function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 
   this.store = storeLocation;
@@ -11,9 +13,10 @@ function CookieStore (storeLocation, minClient, maxClient,averageCookies){
   this.averageCookies = averageCookies;
   this.cookiesSoldPerHour = [];
   this.dailySales = 0;
+  //tableContent.push(this);
 
 }
-//generation my random Number Of clients
+//generation my random Number Of clients AND I don't need to call it because I'm including it in cookieSales
 CookieStore.prototype.randomNumberOfClient = function(){
   return Math.floor(Math.random() * (this.maxClient - this.minClient)) + this.minClient;
 };
@@ -74,21 +77,19 @@ CookieStore.prototype.salesRender = function() {
   //Lo pongo afuera porque sólo lo voy a pegar una vez. Porque esto es mi row completa pegándola to the TABLE.
 };
 
+
+//This will render my HEADER ROW.
 renderTable();
+
 
 //Instances are OBJECT created by constructor functions.
 
 //These are the INSTANCES
 var firstandPike = new CookieStore ('First and Pike', 23, 65, 6.3);
-console.log(firstandPike);
-var seaTacAirport = new CookieStore ('SeaTac Airport', 3, 24, 1.2);
-console.log(seaTacAirport);
+var seaTacAirport =new CookieStore ('SeaTac Airport', 3, 24, 1.2);
 var seattleCenter = new CookieStore ('Seattle Center', 11, 38, 3.7);
-console.log(seattleCenter);
 var alki = new CookieStore ('Alki', 2, 16, 4.6);
-console.log(alki);
 var capitolHill = new CookieStore ('Capitol Hill', 20, 38, 2.3);
-console.log(capitolHill);
 
 
 //I am calling all THE SALES PER HOUR, ALL THE TABLE
@@ -115,6 +116,43 @@ seaTacAirport.totalSales();
 seattleCenter.totalSales();
 alki.totalSales();
 capitolHill.totalSales();
+
+
+//EVENTS
+
+function firstTry(event){
+  event.preventDefault();
+  console.log('the form was submitted');
+
+  var firstElement = event.target;
+  var newInput = new CookieStore(firstElement.storeLocation.value, firstElement.minClient.value, firstElement.maxClient, firstElement.averageCookies.value);
+  console.log(newInput);
+  newInput.renderstoreSales();
+
+}
+
+
+
+
+
+
+
+// var headerElement = document.getElementById('header');
+
+// headerElement.addEventListener('click', function() {
+//   alert('you clicked it!');
+// });
+
+// function handleDogFormSubmitted(event) {
+//   // stop the page from refreshing
+//   event.preventDefault();
+//   console.log('the form was submitted!');
+//   var formElement = event.target;
+//   var newDog = new Dog(formElement.name.value, formElement.color.value, formElement.breed.value, formElement.nickname.value);
+//   console.log(newDog);
+//   newDog.renderRow();
+//var newDog = new Dog(formElement.name, color, breed, nickname);
+
 
 
 
