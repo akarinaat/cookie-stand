@@ -98,14 +98,10 @@ CookieStore.prototype.salesRender = function() {
 
 };
 
-function renderFinalTotal () {
-  var totalSalesRow = document.createElement('tr');
-  var totalCell = document.createElement('td');
 
   // var totalCellContent = totalCell;
   // totalCellContent.textContent = this.dailySales;
 
-}
 
 
 
