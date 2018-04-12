@@ -37,18 +37,13 @@ CookieStore.prototype.cookieSales = function () {
 
     this.cookiesSoldPerHour.push(salesPerHour);
   }
-
 };
-
-//Total sales
+//Total Sales
 CookieStore.prototype.storeSales = function (){
   for (var i = 0; i < this.cookiesSoldPerHour.length; i++) {
     this.dailySales += this.cookiesSoldPerHour[i];
-
   }
-
 };
-
 //FIRST ROW : HEADER
 function renderTable() {
   var headRowElement = document.createElement('tr');
@@ -58,7 +53,6 @@ function renderTable() {
   headRowElement.appendChild(cellElement);
   //This will hours in my header, and have to make a for loop to print each of the storeHours in the 'tr' created before.
   for(var i = 0; i < storeHours.length; i++){
-    console.log('hi');
     //for( var i in storeHours); Esto es lo mismo que la foor lop que escribí arriba: var index en storeHour)
     //1.I have to create the variable that creates my element 'th' (in this case)
     var cellEl = document.createElement('th');
@@ -66,52 +60,70 @@ function renderTable() {
     cellEl.textContent = storeHours[i];
     //3.Now I have to Append.
     headRowElement.appendChild(cellEl);
-
   }
+  cellEl = document.createElement('th');
+  cellEl.textContent = 'Total Cookies Sold';
+
+  headRowElement.appendChild(cellEl);
+
   //I just appended the data
   tableElem.appendChild(headRowElement);
-
 }
 //FIRST AND PIKE CELL
 CookieStore.prototype.salesRender = function() {
-
-  console.log('test');
   var newRow = document.createElement('tr');
   var dataRow = document.createElement('td');
   dataRow.textContent = this.store;
 
   newRow.appendChild(dataRow);
   //tableElem.appendChild(newRow);
-console.log(dataRow);
+  console.log(dataRow);
 
   for(var i = 0; i < storeHours.length; i++) {
 
     var dataCell = document.createElement('td');
 
     dataCell.textContent = this.cookiesSoldPerHour[i];
-console.log(this.cookiesSoldPerHour);
-    //Append
-
+    console.log(this.cookiesSoldPerHour);
+    //Append to the row, por eso lo quiero dentro del loop porque lo va a hacer varias veces hasta [i].length.
     newRow.appendChild(dataCell);
-    
   }
+  dataCell = document.createElement('td');
+  dataCell.textContent = this.dailySales;
+
+  newRow.appendChild(dataCell);
+
+  //Lo pongo afuera porque sólo lo voy a pegar una vez. Porque esto es mi row completa pegándola to the TABLE.
   tableElem.appendChild(newRow);
 
 };
 
+function renderFinalTotal () {
+  var totalSalesRow = document.createElement('tr');
+  var totalCell = document.createElement('td');
+
+  // var totalCellContent = totalCell;
+  // totalCellContent.textContent = this.dailySales;
+
+}
+
+
+
+var headRowElement = document.createElement('tr');
+//I will create a blank cell. Esto porque en el top izquierdo, no hay data.
+var cellElement = document.createElement('th');
+//I didn't give it a content because its a blank cell.
+
+// CookieStore.prototype.totalSales = function () {
+//   var cookiesAprox = 0;
+//   for (var i = 0; i < storeHours.length; i++){
+//     cookiesAprox += this.cookiesPerHour[i];
+//   }
+//   this.totalSales = cookiesAprox;
+// };
+
+
 renderTable();
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -122,11 +134,11 @@ var firstandPike = new CookieStore ('First and Pike', 23, 65, 6.3);
 console.log(firstandPike);
 var seaTacAirport = new CookieStore ('SeaTac Airport', 3, 24, 1.2);
 console.log(seaTacAirport);
-var seattleCenter = new CookieStore ('Seattle Center', 11,38,3.7);
+var seattleCenter = new CookieStore ('Seattle Center', 11, 38, 3.7);
 console.log(seattleCenter);
-var alki = new CookieStore ('Alki',2,16,4.6);
+var alki = new CookieStore ('Alki', 2, 16, 4.6);
 console.log(alki);
-var capitolHill = new CookieStore ('Capitol Hill', 20,38,2.3);
+var capitolHill = new CookieStore ('Capitol Hill', 20, 38, 2.3);
 console.log(capitolHill);
 
 
@@ -148,6 +160,12 @@ seaTacAirport.salesRender();
 seattleCenter.salesRender();
 alki.salesRender();
 capitolHill.salesRender();
+//I'm CALLING THE TOTAL
+firstandPike.totalSales();
+seaTacAirport.totalSales();
+seattleCenter.totalSales();
+alki.totalSales();
+capitolHill.totalSales();
 
 
 
