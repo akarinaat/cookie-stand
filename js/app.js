@@ -1,55 +1,124 @@
 'use strict';
+//This tableElem variable will be called in my render part.
+var tableElem = document.getElementById('thetable');
+var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
-var storeHours = [6 + 'am', 7 + 'am', 8 + 'am', 9 + 'am', 10 + 'am', 11 + 'am', 12 + 'pm', 1 + 'pm', 2 + 'pm', 3 + 'pm', 4 + 'pm', 5 + 'pm', 6 + 'pm', 7 + 'pm', 8 + 'pm'];
+// var firstandPike = {
+//   minClientPerHour: 23,
+//   maxClientPerHour: 65,
+//   averageCookiesPerCustomer: 6.3,
+//   dailySales:[],
+//   cookiesPerHour:[],
+//   customerPerHour: []
+// };
 
-//var shopArr = [];
-var firstandPike = {
-  minClientPerHour: 23,
-  maxClientPerHour: 65,
-  averageCookiesPerCustomer: 6.3,
-  dailySales:0,
-  cookiesPerHour:[],
-  customerPerHour: []
-};
+//var customerPerHour = [];
 
+function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 
-function CookieStore (storeLocation, minClientPerHour, maxClientPerHour,averageCookiesPerCustomer){
-
-  this.minClient = minClientPerHour;
-  this.maxClient = maxClientPerHour;
-  this.averageCookies = averageCookiesPerCustomer;
-  this.totalCookieSales = [];
-  this.cookiesPerHour = [] ;
   this.store = storeLocation;
-  this.cookieSales = [];
+  this.minClient = minClient;
+  this.maxClient = maxClient;
+  this.averageCookies = averageCookies;
+  this.cookiesSoldPerHour = [];
+  this.dailySales = 0;
 
 }
+//generation my random Number Of clients
 CookieStore.prototype.randomNumberOfClient = function(){
-  for (var i = 0; i < storeHours.length; i++){
-    this.customerPerHour[i] = Math.floor(Math.random() * (this.maxClientPerHour - this.minClientPerHour)) + this.minClientPerHour;
+  return Math.floor(Math.random() * (this.maxClient - this.minClient)) + this.minClient;
+};
+
+// Cookies Sales per Hour
+CookieStore.prototype.cookieSales = function () {
+
+  for(var i = 0; i < storeHours.length; i++ ){
+    var salesPerHour = Math.round(this.randomNumberOfClient() * this.averageCookies);
+
+    this.cookiesSoldPerHour.push(salesPerHour);
+  }
+
+};
+
+//Total sales
+CookieStore.prototype.storeSales = function (){
+  for (var i = 0; i < this.cookiesSoldPerHour.length; i++) {
+    this.dailySales += this.cookiesSoldPerHour[i];
 
   }
 
-  CookieStore.prototype.cookieSales = function () {
-    for(var i = 0; i <storeHours.length; i++ ){
-      var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
-      this.cookiesPerHour[i] = numberSold;
-      this.dailySales += numberSold;
-      cookiesPerHour.push(this.numberSold);
-      totalCookieSales.push(dailySales);
-
-
-
-      CookieStore.prototype.sales = function () {
-        return 'Hi Pat, today\'s sales at' + this.store + ' were: ' + this.cookieSales + '.';
-      };
-
-    }
-
-  };
 };
 
-var firstandPike = new CookieStore ('First and Pike', 23, 65,6.3);
+//FIRST ROW : HEADER
+function renderTable() {
+  var headRowElement = document.createElement('tr');
+  //I will create a blank cell. Esto porque en el top izquierdo, no hay data.
+  var cellElement = document.createElement('th');
+  //I didn't give it a content because its a blank cell.
+  headRowElement.appendChild(cellElement);
+  //This will hours in my header, and have to make a for loop to print each of the storeHours in the 'tr' created before.
+  for(var i = 0; i < storeHours.length; i++){
+    console.log('hi');
+    //for( var i in storeHours); Esto es lo mismo que la foor lop que escribí arriba: var index en storeHour)
+    //1.I have to create the variable that creates my element 'th' (in this case)
+    var cellEl = document.createElement('th');
+    //2.Now I will give it content:
+    cellEl.textContent = storeHours[i];
+    //3.Now I have to Append.
+    headRowElement.appendChild(cellEl);
+
+  }
+  //I just appended the data
+  tableElem.appendChild(headRowElement);
+
+}
+//FIRST AND PIKE CELL
+CookieStore.prototype.salesRender = function() {
+
+  console.log('test');
+  var newRow = document.createElement('tr');
+  var dataRow = document.createElement('td');
+  dataRow.textContent = this.store;
+
+  newRow.appendChild(dataRow);
+  //tableElem.appendChild(newRow);
+console.log(dataRow);
+
+  for(var i = 0; i < storeHours.length; i++) {
+
+    var dataCell = document.createElement('td');
+
+    dataCell.textContent = this.cookiesSoldPerHour[i];
+console.log(this.cookiesSoldPerHour);
+    //Append
+
+    newRow.appendChild(dataCell);
+    
+  }
+  tableElem.appendChild(newRow);
+
+};
+
+renderTable();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Instances are OBJECT created by constructor functions.
+
+//These are the INSTANCES
+var firstandPike = new CookieStore ('First and Pike', 23, 65, 6.3);
 console.log(firstandPike);
 var seaTacAirport = new CookieStore ('SeaTac Airport', 3, 24, 1.2);
 console.log(seaTacAirport);
@@ -60,14 +129,25 @@ console.log(alki);
 var capitolHill = new CookieStore ('Capitol Hill', 20,38,2.3);
 console.log(capitolHill);
 
-//console.log(firstandPike.sales());
-CookieStore.firstandPike();
-seaTacAirport.sales();
-seattleCenter.sales();
-alki.sales();
-capitolHill.sales();
 
 
+firstandPike.cookieSales();
+seaTacAirport.cookieSales();
+seattleCenter.cookieSales();
+alki.cookieSales();
+capitolHill.cookieSales();
+
+firstandPike.storeSales();
+seaTacAirport.storeSales();
+seattleCenter.storeSales();
+alki.storeSales();
+capitolHill.storeSales();
+//Calling the ROWS
+firstandPike.salesRender();
+seaTacAirport.salesRender();
+seattleCenter.salesRender();
+alki.salesRender();
+capitolHill.salesRender();
 
 
 
@@ -88,7 +168,7 @@ capitolHill.sales();
 //   this.cookiesPerHour[i] = numberSold;
 //   this.dailySales += numberSold;
 
-  
+
 
 
 // cookieSalesPerHour: function ()
@@ -97,19 +177,8 @@ capitolHill.sales();
 //     var numberSold = this.customerPerHour[i] * this.averageCookiesPerCustomer;
 //     this.cookiesPerHour[i] = numberSold;
 //     this.dailySales += numberSold;
-    
+
 // },
-
-
-
-
-
-
-
-
-
-
-
 
 
 //PIKE LOCATION
