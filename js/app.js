@@ -3,17 +3,6 @@
 var tableElem = document.getElementById('thetable');
 var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
-// var firstandPike = {
-//   minClientPerHour: 23,
-//   maxClientPerHour: 65,
-//   averageCookiesPerCustomer: 6.3,
-//   dailySales:[],
-//   cookiesPerHour:[],
-//   customerPerHour: []
-// };
-
-//var customerPerHour = [];
-
 function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 
   this.store = storeLocation;
@@ -28,13 +17,10 @@ function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 CookieStore.prototype.randomNumberOfClient = function(){
   return Math.floor(Math.random() * (this.maxClient - this.minClient)) + this.minClient;
 };
-
 // Cookies Sales per Hour
 CookieStore.prototype.cookieSales = function () {
-
   for(var i = 0; i < storeHours.length; i++ ){
     var salesPerHour = Math.round(this.randomNumberOfClient() * this.averageCookies);
-
     this.cookiesSoldPerHour.push(salesPerHour);
   }
 };
@@ -63,9 +49,7 @@ function renderTable() {
   }
   cellEl = document.createElement('th');
   cellEl.textContent = 'Total Cookies Sold';
-
   headRowElement.appendChild(cellEl);
-
   //I just appended the data
   tableElem.appendChild(headRowElement);
 }
@@ -74,15 +58,11 @@ CookieStore.prototype.salesRender = function() {
   var newRow = document.createElement('tr');
   var dataRow = document.createElement('td');
   dataRow.textContent = this.store;
-
   newRow.appendChild(dataRow);
-  //tableElem.appendChild(newRow);
+  tableElem.appendChild(newRow);
   console.log(dataRow);
-
   for(var i = 0; i < storeHours.length; i++) {
-
     var dataCell = document.createElement('td');
-
     dataCell.textContent = this.cookiesSoldPerHour[i];
     console.log(this.cookiesSoldPerHour);
     //Append to the row, por eso lo quiero dentro del loop porque lo va a hacer varias veces hasta [i].length.
@@ -90,38 +70,11 @@ CookieStore.prototype.salesRender = function() {
   }
   dataCell = document.createElement('td');
   dataCell.textContent = this.dailySales;
-
   newRow.appendChild(dataCell);
-
   //Lo pongo afuera porque sólo lo voy a pegar una vez. Porque esto es mi row completa pegándola to the TABLE.
-  tableElem.appendChild(newRow);
-
 };
 
-
-  // var totalCellContent = totalCell;
-  // totalCellContent.textContent = this.dailySales;
-
-
-
-
-var headRowElement = document.createElement('tr');
-//I will create a blank cell. Esto porque en el top izquierdo, no hay data.
-var cellElement = document.createElement('th');
-//I didn't give it a content because its a blank cell.
-
-// CookieStore.prototype.totalSales = function () {
-//   var cookiesAprox = 0;
-//   for (var i = 0; i < storeHours.length; i++){
-//     cookiesAprox += this.cookiesPerHour[i];
-//   }
-//   this.totalSales = cookiesAprox;
-// };
-
-
 renderTable();
-
-
 
 //Instances are OBJECT created by constructor functions.
 
@@ -138,13 +91,13 @@ var capitolHill = new CookieStore ('Capitol Hill', 20, 38, 2.3);
 console.log(capitolHill);
 
 
-
+//I am calling all THE SALES PER HOUR, ALL THE TABLE
 firstandPike.cookieSales();
 seaTacAirport.cookieSales();
 seattleCenter.cookieSales();
 alki.cookieSales();
 capitolHill.cookieSales();
-
+//I'm calling the TOTAL COOKIES SOLD
 firstandPike.storeSales();
 seaTacAirport.storeSales();
 seattleCenter.storeSales();
@@ -162,7 +115,6 @@ seaTacAirport.totalSales();
 seattleCenter.totalSales();
 alki.totalSales();
 capitolHill.totalSales();
-
 
 
 
