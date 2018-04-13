@@ -176,6 +176,14 @@ function renderFooter() {
 
   }
   tableElem.appendChild(footRowElement);
+
+  var totalOfTotals = 0;
+  for(var j = 0; j < hourlyTotal.length; j++) {
+    totalOfTotals += hourlyTotal[j];
+  }
+  var koko = document.createElement('td');
+  koko.textContent = totalOfTotals;
+  footRowElement.appendChild(koko);
 }
 
 renderFooter();
