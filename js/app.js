@@ -3,7 +3,8 @@
 var tableElem = document.getElementById('thetable');
 var storeHours = ['6am', '7am','8am','9am','10am','11am','12pm', '1pm','2pm','3pm', '4pm','5pm','6pm','7pm','8pm'];
 
-//var tableContent =[];
+var allStores =[];
+var hourlyTotal = [];
 
 function CookieStore (storeLocation, minClient, maxClient,averageCookies){
 
@@ -13,12 +14,13 @@ function CookieStore (storeLocation, minClient, maxClient,averageCookies){
   this.averageCookies = averageCookies;
   this.cookiesSoldPerHour = [];
   this.dailySales = 0;
-  //tableContent.push(this);
+  allStores.push(this);
 
 }
+//THESE ARE METHODS
 //generation my random Number Of clients AND I don't need to call it because I'm including it in cookieSales
 CookieStore.prototype.randomNumberOfClient = function(){
-  return Math.floor(Math.random() * (this.maxClient - this.minClient)) + this.minClient;
+  return Math.floor(Math.random() * (this.maxClient - this.minClient +1)) + this.minClient;
 };
 // Cookies Sales per Hour
 CookieStore.prototype.cookieSales = function () {
@@ -126,7 +128,7 @@ function firstTry(event){
   console.log('the form was submitted');
 
   var firstElement = event.target;
-  var newInput = new CookieStore(firstElement.location.value, parseInt(firstElement.min.value), parseInt(firstElement.max.value), parseInt(firstElement.average.value));
+  var newInput = new CookieStore(firstElement.location.value, Number(firstElement.min.value),Number(firstElement.max.value),Number(firstElement.average.value));
   console.log(newInput);
   newInput.cookieSales();
   newInput.storeSales();
@@ -139,9 +141,44 @@ var locationFormElement = document.getElementById('formElement');
 locationFormElement.addEventListener('submit', firstTry);
 
 
+function cookiesSoldPerStorePerHour() {
+  //I'm going hour per hour
+  //THIS IS THE SPIRAL PUNCH, THE HORIZONTAL LOOP, I'm making it walk.
+  for(var hour = 0; hour < storeHours.length; hour++){
+    //I'm going to...
+    //we're putting the var here because it has to be considered by both loops. If it was living in the inner loop, it would only be running in it. THAT IS WHY IT HAS TO BE OUTSIDE.
+    var sumOfCookies = 0;
 
+    //This is the vertical LOOP
+    for(var i = 0; i < allStores.length; i++){
+      //hour will give me the different hours not just the first column.
+      sumOfCookies += allStores[i].cookiesSoldPerHour[hour];
 
+    }
+    hourlyTotal.push(sumOfCookies);
+    console.log(sumOfCookies);
+  }
 
+}
+cookiesSoldPerStorePerHour();
+
+function renderFooter() {
+  var footRowElement= document.createElement('tr');
+  //I could have use datafooter en vez de total and then borrar var from loop.
+  var total = document.createElement('td');
+  total.textContent = 'Total sales per hour';
+  footRowElement.appendChild(total);
+
+  for(var i = 0; i < hourlyTotal.length; i++){
+    var dataFooter = document.createElement('td');
+    dataFooter.textContent = hourlyTotal[i];
+    footRowElement.appendChild(dataFooter);
+
+  }
+  tableElem.appendChild(footRowElement);
+}
+
+renderFooter();
 
 // var headerElement = document.getElementById('header');
 
