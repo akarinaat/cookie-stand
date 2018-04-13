@@ -1,17 +1,31 @@
  body{
-   background: bisque;
+   background: grey;
  }
-h1{
+
+th {
+border: 2px solid transparent;
+border-radius: 10px;
+}
+
+th:hover{
+  background-color: white;
+}
+
+
+td {
   text-align: center;
-  font-size: 50px;
+  font-size: 20px;
+  background: salmon;
+  border: 15px solid transparent;
+  border-radius: 10px;
+  width: 40px;
+  
 }
- ul{
-    border-radius: 25%;
-    border: 2px solid black;
-    padding: 20px; 
-    width: 200px;
-    height: 290px;
-    background-color: salmon;
-    margin-left: 40%;
-    margin-top: 8%;
+
+td:hover{
+  background-color: bisque;
+
 }
+
+
+
