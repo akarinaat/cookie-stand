@@ -3,6 +3,12 @@ body {
 
 }
 
+nav{
+  background-color: #000000 ;
+  width: 100%;
+  height:70px;
+}
+
 .sal {
   margin: 10%;
   margin-left: 25%;
@@ -25,10 +31,18 @@ img {
   
 }
 
+
 img:hover {
   opacity: 0.5;
   filter: alpha(opacity=50); 
+  
+}
 
+
+.grid #one:hover .text{
+  visibility: visible;
+  opacity: 0;
+  color: black;
 }
 
 .grid {
@@ -41,7 +55,7 @@ padding-top: 20%;
   color: salmon;
   text-align: center;
   background-color: bisque;
-  margin-top: 5%;
+  margin-top: 1em;
   font-family: 'Permanent Marker', cursive;
 
 }

@@ -123,7 +123,7 @@ capitolHill.salesRender();
 //EVENTS
 
 
-function firstTry(event){
+function clickEvent(event){
   event.preventDefault();
   console.log('the form was submitted');
 
@@ -134,11 +134,13 @@ function firstTry(event){
   newInput.storeSales();
   newInput.salesRender();
 
-
+  //console.log('footer here');
+  //renderFooter();
 }
 
 var locationFormElement = document.getElementById('formElement');
-locationFormElement.addEventListener('submit', firstTry);
+locationFormElement.addEventListener('submit', clickEvent);
+
 
 
 function cookiesSoldPerStorePerHour() {
@@ -181,9 +183,9 @@ function renderFooter() {
   for(var j = 0; j < hourlyTotal.length; j++) {
     totalOfTotals += hourlyTotal[j];
   }
-  var koko = document.createElement('td');
-  koko.textContent = totalOfTotals;
-  footRowElement.appendChild(koko);
+  var sumOfSum = document.createElement('td');
+  sumOfSum.textContent = totalOfTotals;
+  footRowElement.appendChild(sumOfSum);
 }
 
 renderFooter();
