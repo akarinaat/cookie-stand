@@ -1,5 +1,5 @@
 body {
-  background: white;
+  background-image: url(brickwall.jpg);
 
 }
 
@@ -11,15 +11,17 @@ nav{
 
 .sal {
   margin: 10%;
-  margin-left: 25%;
+  margin-left: 30%;
   margin-top: 30px;
-  width: 50%;
+  width: 40%;
 
 }
 
+
+
 .sal:hover {
   transition: 500ms;
-  transform: rotate(180deg);
+  transform: rotate(360deg);
 
 }
 
@@ -38,6 +40,17 @@ img:hover {
   
 }
 
+#locations{
+  margin-top: 25%;
+  background-color: black;
+  color: salmon;
+  padding-top: 30px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 50px;
+
+}
+
 
 .grid #one:hover .text{
   visibility: visible;
@@ -46,16 +59,38 @@ img:hover {
 }
 
 .grid {
-padding-top: 20%;
+padding-top: 10%;
 
 }
 
 #salmookies {
   font-size: 100px;
-  color: salmon;
+  color:black;
   text-align: center;
-  background-color: bisque;
-  margin-top: 1em;
+  margin-top: 15px;
   font-family: 'Permanent Marker', cursive;
 
 }
+
+footer #hours {
+  margin-top: 50%;
+  margin-bottom: 20%;
+  background-color: black;
+  color: salmon;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+footer #contact{
+  background-color: black;
+  color: salmon;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
